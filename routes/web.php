@@ -74,6 +74,7 @@ Route::prefix('/user/dashboard')->middleware(['auth', 'checkProfile'])->group(fu
 
     Route::get('checkout/{item}/{type}', [PublicController::class, 'checkout'])->name('checkout.store');
     Route::post('order/store', [OrderController::class, 'store'])->name('order.store');
+
     Route::get('/', [CourseController::class, 'index'])->name('user.courses.index');
     Route::get('/my-courses', [CourseController::class, 'courses'])->name('user.courses.student');
     Route::get('/create-course', [PublicController::class, 'createcourse'])->name('user.course.create');
@@ -226,7 +227,8 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
         Route::get('/course', [OrderController::class, 'course'])->name('orders.course');
         Route::get('/product', [OrderController::class, 'product'])->name('orders.product');
         // Route::get('/{orders}', [ordersController::class, 'show'])->name('orders.show');
-        // Route::delete('/{orders}', [ordersController::class, 'destroy'])->name('orders.destroy');
+        Route::get('/{orders}', [OrderController::class, 'destroy'])->name('orders.destroy');
+        Route::get('transaction/{transaction}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
         Route::get('/pending/{order}', [OrderController::class, 'pending'])->name('orders.pending');
         Route::get('/active/{order}', [OrderController::class, 'active'])->name('orders.active');
         Route::get('/inactive/{order}', [OrderController::class, 'inactive'])->name('orders.inactive');

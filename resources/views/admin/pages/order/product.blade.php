@@ -40,7 +40,7 @@
                             <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th>Order ID</th>
+                                        <th>Sl no</th>
                                         <th>User</th>
                                         <th>Item</th>
                                         <th>Type</th>
@@ -52,9 +52,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orders as $order)
+                                    @foreach ($orders as $k=>$order)
                                     <tr>
-                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $k }}</td>
                                         <td>{{ $order->user->name }}</td>
                                         <td>{{ $order->product->name }}</td>
                                         @if ($order->type == 1)

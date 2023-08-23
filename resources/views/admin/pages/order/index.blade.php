@@ -40,7 +40,7 @@
                             <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th>Order ID</th>
+                                        <th>Sl no</th>
                                         <th>User</th>
                                         <th>Item</th>
                                         <th>Type</th>
@@ -52,9 +52,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orders as $order)
+                                    @foreach ($orders as $k=> $order)
                                     <tr>
-                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $k }}</td>
                                         <td>{{ $order->user->name }}</td>
                                         <td>
                                             @if ($order->type == 1)
@@ -99,16 +99,13 @@
                                                 <i class="fa fa-check"></i> </a>
                                             @endif
 
-                                            {{-- <a class="btn btn-primary waves-effect btn-circle waves-light"
-                                              href="{{ route('orders.edit', $order->id) }}">
-                                            <i class="fa fa-edit"></i> </a>
                                             <form hidden action="{{ route('orders.destroy', $order->id) }}"
                                               id="form{{ $order->id }}" method="get">
                                                 @csrf
                                             </form>
                                             <button class="btn btn-danger waves-effect btn-circle waves-light"
                                               onclick="deleteItem({{ $order->id }});" type="button">
-                                                <i class="fa fa-trash"></i> </button> --}}
+                                                <i class="fa fa-trash"></i> </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -126,12 +123,12 @@
 </div>
 @endsection
 
-{{-- @section('scripts')
+@section('scripts')
 <script>
     function deleteItem(id) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "Your transaction will also delete ,You won't be able to revert this!",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -145,4 +142,4 @@
             })
         }
 </script>
-@endsection --}}
+@endsection

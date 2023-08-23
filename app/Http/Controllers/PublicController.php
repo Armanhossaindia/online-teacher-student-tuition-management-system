@@ -142,6 +142,14 @@ class PublicController extends Controller
         } elseif ($type == 2) {
             $singleItem = Product::find($item);
         }
+
+
+        $ifordered = Order::query()->where('type', $type)->where('item_id', $singleItem)->where('user_id', Auth::user()->id)->get();
+
+        if ($ifordered->count() > 0) {
+            return redirect()->back()->with('error', 'You Have Already Purchased This Item');
+        }
+
         // dd($singleItem);
         return view('web.pages.checkout', compact('singleItem', 'type'));
     }

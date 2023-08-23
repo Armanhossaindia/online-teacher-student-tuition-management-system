@@ -214,4 +214,18 @@ class TransactionController extends Controller
 
         return response()->json($response);
     }
+
+    public function destroy(Transaction $transaction)
+    {
+        $order = Order::find($transaction->order_id);
+        $orderdelete =  $order->delete();
+        $transactiondelete =  $transaction->delete();
+
+
+        if ($orderdelete && $transactiondelete) {
+            return redirect()->back()->with('success', 'transaction Deleted successfully.');
+        } else {
+            return back()->with('error', 'transaction Delete Unsuccessfull');
+        }
+    }
 }

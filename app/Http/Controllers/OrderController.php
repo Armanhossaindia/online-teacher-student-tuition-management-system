@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\Models\Product;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +64,14 @@ class OrderController extends Controller
             'price' => 'required',
             'transaction_id' => 'required',
         ]);
-        // dd($data);
+
+
+        $ifordered = Order::query()->where('type', $data['type'])->where('item_id', $data['item_id'])->where('user_id', Auth::user()->id)->get();
+
+        if ($ifordered->count() > 0) {
+            return redirect()->back()->with('error', 'You Have Already Purchased This Item');
+        }
+
         $profit = 25;
         $data['user_id'] = Auth::user()->id;
 
@@ -138,7 +145,7 @@ class OrderController extends Controller
                 // $owner = $data['price'] - $percentage;
 
                 $item = Product::find($data['item_id']);
-            
+
                 $transaction['order_id'] = $order->id;
                 $transaction['invoice'] = $invoice;
                 $transaction['student_id'] = Auth::user()->id;
@@ -201,9 +208,20 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($orders)
     {
-        //
+        $order = Order::find($orders);
+        $transaction = Transaction::where('order_id', $order->id)->first();
+
+        $orderdelete =  $order->delete();
+        $transactiondelete =  $transaction->delete();
+
+
+        if ($orderdelete && $transactiondelete) {
+            return redirect()->back()->with('success', 'order Deleted successfully.');
+        } else {
+            return back()->with('error', 'order Delete Unsuccessfull');
+        }
     }
     /**
      * Active the specified resource in storage.
@@ -250,5 +268,3 @@ class OrderController extends Controller
         }
     }
 }
-
-

@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
             BlogSeeder::class,
             CategorySeeder::class,
             SubjectSeeder::class,
-            //TeacherSeeder::class,
-            //studentSeeder::class,
-           // CourseSeeder::class,
-           // ProductSeeder::class,
+            TeacherSeeder::class,
+            studentSeeder::class,
+            CourseSeeder::class,
+            ProductSeeder::class,
             DurationSeeder::class,
-            //OrderSeeder::class,
-            //TransactionSeeder::class
+             OrderSeeder::class,
+             TransactionSeeder::class
         ]);
     }
 }

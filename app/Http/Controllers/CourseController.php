@@ -86,7 +86,6 @@ class CourseController extends Controller
             'subject_id' => 'required',
             'creator_id' => 'required',
             'duration' => 'required',
-            'meeting_link' => 'required',
             'image' => 'required|image|max:2048', // max file size of 2MB
         ]);
 
