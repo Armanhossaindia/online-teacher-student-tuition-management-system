@@ -38,6 +38,17 @@
     <li>
         <a href="javascript: void(0);" class="has-arrow waves-effect">
             <i class="bx bx-home-circle"></i>
+            <span key="t-Chat">Chat</span>
+        </a>
+        <ul class="sub-menu" aria-expanded="false">
+            <li><a href="{{ route('admin.chat.index') }}" key="t-list">All Chat</a></li>
+
+        </ul>
+    </li>
+
+    <li>
+        <a href="javascript: void(0);" class="has-arrow waves-effect">
+            <i class="bx bx-home-circle"></i>
             <span key="t-Shop">Orders</span>
         </a>
         <ul class="sub-menu" aria-expanded="false">

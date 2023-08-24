@@ -233,7 +233,11 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
         Route::get('/active/{order}', [OrderController::class, 'active'])->name('orders.active');
         Route::get('/inactive/{order}', [OrderController::class, 'inactive'])->name('orders.inactive');
     });
-
+    Route::prefix('chat')->group(function () {
+        // users-Routes
+        Route::get('/', [ChatController::class, 'index'])->name('admin.chat.index');
+        Route::get('/{courseid}', [ChatController::class, 'chat'])->name('admin.chat.show');
+    });
     Route::prefix('users')->group(function () {
         // users-Routes
         Route::get('/', [UserController::class, 'index'])->name('users.index');

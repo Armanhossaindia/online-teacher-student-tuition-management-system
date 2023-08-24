@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -14,7 +15,18 @@ class ChatController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::query()->where('status', 1)->get();
+        $chats = false;
+        $activechat = null;
+        return view('admin.pages.chats.index', compact('courses', 'chats', 'activechat'));
+    }
+    public function chat($courseid)
+    {
+        $courses = Course::query()->where('status', 1)->get();
+        $course = Course::find($courseid);
+        $chats = Chat::query()->where('course_id', $courseid)->get();
+        $activechat = $courseid;
+        return view('admin.pages.chats.index', compact('courses', 'course', 'chats', 'activechat'));
     }
 
     /**
