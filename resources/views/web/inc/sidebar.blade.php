@@ -1,6 +1,6 @@
 <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30">
 
-    @if (request()->routeIs('user.*'))
+    @if (request()->routeIs('user.*','chat.*','attendance.*','teacher.*'))
     <div class="sidebar -dashboard mt-5">
 
         <div class="sidebar__item ">

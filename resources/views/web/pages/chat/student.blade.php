@@ -95,15 +95,15 @@
                         </div>
                         @elseif($chat->sender_role == 0)
                         <div class="col-xl-7 col-lg-10">
-                            <div class="d-flex items-center bg-dark-1">
+                            <div class="d-flex items-center ">
 
-                                <div class="lh-11 fw-500 text-white-1 ml-10">Moderator</div>
-                                <div class="text-14 lh-11 ml-10 text-white-1">
+                                <div class="lh-11 fw-500 text-dark-1 ml-10">Moderator</div>
+                                <div class="text-14 lh-11 ml-10 text-dark-1">
                                     {{ $chat->created_at->format('d M h:i:a') }}
                                 </div>
                             </div>
                             <div class="d-block mt-15">
-                                <div class="py-20 px-30 bg-light-3 rounded-8 text-white-1">
+                                <div class="py-20 px-30 bg-dark-1 rounded-8  text-white">
                                     {{ $chat->text }}
                                 </div>
                             </div>

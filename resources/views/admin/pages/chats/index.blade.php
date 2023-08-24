@@ -210,54 +210,6 @@ active
                         </div>
 
 
-
-                        @foreach($chats as $chat)
-                        @if($chat->sender_role == 1)
-                        <div class="col-xl-7 col-lg-10">
-                            <div class="d-flex items-center">
-                                <div class="shrink-0">
-                                    @php
-
-                                    // dd($chat);
-
-                                    $studentInfo = App\Models\User::find($chat->sender_id);
-
-                                    @endphp
-                                    <img src="{{ asset('') }}uploads/students/{{ $studentInfo->student->image }}"
-                                      alt="image" class="size-50">
-                                </div>
-                                <div class="lh-11 fw-500 text-dark-1 ml-10">{{ $studentInfo->name }}</div>
-                                <div class="text-14 lh-11 ml-10">{{ $chat->created_at->format('d M h:i:a') }}</div>
-                            </div>
-                            <div class="d-block mt-15">
-                                <div class="py-20 px-30 bg-light-3 rounded-8">
-                                    {{ $chat->text }}
-                                </div>
-                            </div>
-                        </div>
-                        @else
-                        <div class="col-xl-7 offset-xl-5 col-lg-10 offset-lg-2">
-                            <div class="d-flex items-center justify-end">
-                                <div class="text-14 lh-11 mr-10">{{ $chat->created_at->format('d M h:i:a') }}</div>
-                                <div class="lh-11 fw-500 text-dark-1 mr-10">You</div>
-                                <div class="shrink-0">
-                                    <img src="{{ asset('uploads/teachers/'.Auth::user()->teacher->image) }}" alt="image"
-                                      class="size-50">
-                                </div>
-                            </div>
-                            <div class="d-block mt-15">
-                                <div class="py-20 px-30 bg-light-7 -dark-bg-dark-2 text-purple-1 rounded-8 text-right">
-                                    {{ $chat->text }}
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-
-                        @endforeach
-
-
-
-
                         <div>
                             <div class="chat-conversation p-3">
                                 <ul class="list-unstyled mb-0" data-simplebar="init" style="max-height: 486px;">
@@ -322,7 +274,7 @@ active
 
                                                                 <div class="ctext-wrap  bg-success text-light">
                                                                     <div class="conversation-name text-light">
-                                                                        {{ $userInfo ->name }}
+                                                                        You
                                                                     </div>
                                                                     <p>
                                                                         {{ $chat->text }}
@@ -362,33 +314,28 @@ active
                                 </ul>
                             </div>
                             <div class="p-3 chat-input-section">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control chat-input"
-                                              placeholder="Enter Message...">
-                                            <div class="chat-input-links" id="tooltip-container">
-                                                <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item"><a href="javascript: void(0);"
-                                                          title="Emoji"><i
-                                                              class="mdi mdi-emoticon-happy-outline"></i></a></li>
-                                                    <li class="list-inline-item"><a href="javascript: void(0);"
-                                                          title="Images"><i class="mdi mdi-file-image-outline"></i></a>
-                                                    </li>
-                                                    <li class="list-inline-item"><a href="javascript: void(0);"
-                                                          title="Add Files"><i
-                                                              class="mdi mdi-file-document-outline"></i></a></li>
-                                                </ul>
+                                <form action="{{ route('chat.save') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                    <input type="hidden" name="sender_id" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="sender_role" value="{{ Auth::user()->role }}">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="position-relative">
+                                                <input type="text" name="text" class="form-control chat-input"
+                                                  placeholder="Enter Message...">
+
                                             </div>
                                         </div>
+                                        <div class="col-auto">
+                                            <button type="submit"
+                                              class="btn btn-primary btn-rounded chat-send w-md waves-effect waves-light"><span
+                                                  class="d-none d-sm-inline-block me-2">Send</span> <i
+                                                  class="mdi mdi-send"></i></button>
+                                        </div>
                                     </div>
-                                    <div class="col-auto">
-                                        <button type="submit"
-                                          class="btn btn-primary btn-rounded chat-send w-md waves-effect waves-light"><span
-                                              class="d-none d-sm-inline-block me-2">Send</span> <i
-                                              class="mdi mdi-send"></i></button>
-                                    </div>
-                                </div>
+                                </form>
+
                             </div>
                         </div>
                         @else
