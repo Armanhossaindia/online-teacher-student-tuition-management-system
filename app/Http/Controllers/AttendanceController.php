@@ -53,9 +53,9 @@ class AttendanceController extends Controller
         $existingAttendance = Attendance::where('course_id', $data['course_id'])
             ->where('date',  $data['date'])
             ->where('user_type', $user->role)
-            ->first();
+            ->get();
 
-        if ($existingAttendance) {
+        if ($existingAttendance->count() > 0) {
             $data['status'] = 2;
         } else {
             $data['status'] = 1;
