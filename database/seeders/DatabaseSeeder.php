@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
             TeacherSeeder::class,
             studentSeeder::class,
             CourseSeeder::class,
-            ProductSeeder::class,
+            //ProductSeeder::class,
             DurationSeeder::class,
-             OrderSeeder::class,
-             TransactionSeeder::class
+            // OrderSeeder::class,
+             //TransactionSeeder::class
         ]);
     }
 }

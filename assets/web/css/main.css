@@ -3863,7 +3863,7 @@ h6 {
     font-weight: 500;
     margin-right: 10px;
     color: var(--color-light-1);
-    text-decoration: line-through;
+    
 }
 
 .coursesCard.-type-1 .coursesCard-footer__price>div:nth-child(2) {

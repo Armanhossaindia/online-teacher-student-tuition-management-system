@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\Course;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,25 +49,34 @@ class AttendanceController extends Controller
         $data['user_type'] = $user->role;
         $data['date'] = Carbon::now()->today()->toDateString();
         //
-        // dd($data);
-
+        
         $existingAttendance = Attendance::where('course_id', $data['course_id'])
             ->where('date',  $data['date'])
             ->where('user_type', $user->role)
             ->get();
 
-        if ($existingAttendance->count() > 0) {
-            $data['status'] = 2;
-        } else {
-            $data['status'] = 1;
-        }
+            
 
-        // dd($data);
-        $result = Attendance::create($data);
-        if ($result) {
-            return redirect()->back()->with('success', 'Attendace acceped successfully');
+        if ($existingAttendance->count() > 0) {
+            return redirect()->back()->with('error', 'Attendace Already taken');
         } else {
-            return redirect()->back()->with('error', 'Attendace Unsuccessfull');
+            $course = Course::find($data['course_id']);
+
+            //dd($course);
+
+            if ($course->duration == $data['duration']) {
+
+                $data['status'] = 1;
+                // dd($data);
+                $result = Attendance::create($data);
+                if ($result) {
+                    return redirect()->back()->with('success', 'Attendace acceped successfully');
+                } else {
+                    return redirect()->back()->with('error', 'Attendace Unsuccessfull');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Wrong Attendace');
+            }
         }
     }
 
@@ -159,3 +169,6 @@ class AttendanceController extends Controller
         }
     }
 }
+
+
+

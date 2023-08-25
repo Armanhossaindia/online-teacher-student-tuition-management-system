@@ -25,12 +25,12 @@
 
                             </div>
                         </div>
-                        @if($isPurchased)
+                        <!-- @if($isPurchased)
                         <div class="d-flex items-center mt-30">
                             <a href="{{ route('chat.show.student',$teacher->id) }}"
                               class="button -md -green-1 text-dark-1">Send Message</a>
                         </div>
-                        @endif
+                        @endif -->
 
                     </div>
                 </div>
