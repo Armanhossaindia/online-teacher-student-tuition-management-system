@@ -79,13 +79,13 @@
 
                     <td>
                       @if ($subject->status == 1)
-                      <a class="btn btn-danger waves-effect btn-circle waves-light"
-                        href="{{ route('subjects.inactive', $subject->id) }}">
-                        <i class="fas fa-minus-circle"></i> </a>
-                      @else
                       <a class="btn btn-success waves-effect btn-circle waves-light"
+                        href="{{ route('subjects.inactive', $subject->id) }}">
+                        <i class="fas fa-check"></i> </a>
+                      @else
+                      <a class="btn btn-danger waves-effect btn-circle waves-light"
                         href="{{ route('subjects.active', $subject->id) }}">
-                        <i class="fa fa-check"></i> </a>
+                        <i class="fa fa-times"></i> </a>
                       @endif
 
                       <a class="btn btn-primary waves-effect btn-circle waves-light"

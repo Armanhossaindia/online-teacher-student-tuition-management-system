@@ -79,17 +79,17 @@
                                         <td>{{ $order->transaction_id }}</td>
                                         <td>
                                             @if ($order->status == 1)
-                                            <a class="btn btn-danger waves-effect btn-circle waves-light"
-                                              href="{{ route('orders.inactive', $order->id) }}">
-                                                <i class="fas fa-minus-circle"></i> </a>
-                                            @elseif($order->status == 2)
                                             <a class="btn btn-success waves-effect btn-circle waves-light"
+                                              href="{{ route('orders.inactive', $order->id) }}">
+                                                <i class="fas fa-check"></i> </a>
+                                            @elseif($order->status == 2)
+                                            <a class="btn btn-danger waves-effect btn-circle waves-light"
                                               href="{{ route('orders.pending', $order->id) }}">
                                                 accept order </a>
                                             @else
-                                            <a class="btn btn-success waves-effect btn-circle waves-light"
+                                            <a class="btn btn-danger waves-effect btn-circle waves-light"
                                               href="{{ route('orders.active', $order->id) }}">
-                                                <i class="fa fa-check"></i> </a>
+                                                <i class="fa fa-times"></i> </a>
                                             @endif
                                         </td>
                                     </tr>

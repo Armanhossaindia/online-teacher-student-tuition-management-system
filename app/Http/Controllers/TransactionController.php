@@ -23,7 +23,7 @@ class TransactionController extends Controller
             'invoice' => $transaction->invoice,
             'seller' => $transaction->order->type == 1 ? $transaction->creator->name : 'In House',
             'amount' => $transaction->amount,
-            'created_at' => $transaction->created_at->format('d-mm-y'),
+            'created_at' => $transaction->created_at->format('d-m-y'),
         ];
         $salesData[] = $sale;
 
@@ -54,7 +54,7 @@ class TransactionController extends Controller
             'invoice' => $transaction->invoice,
             'seller' => $transaction->order->type == 1 ? $transaction->creator->name : 'In House',
             'amount' => $transaction->amount,
-            'created_at' => $transaction->created_at->format('d-mm-y'),
+            'created_at' => $transaction->created_at->format('d-m-y'),
         ];
         $salesData[] = $sale;
 
@@ -91,7 +91,7 @@ class TransactionController extends Controller
                 'invoice' => $item->invoice,
                 'seller' => $item->order->type == 1 ? $item->creator->name : 'In House',
                 'amount' => $item->amount,
-                'created_at' => $item->created_at->format('d-mm-y h:i:a'),
+                'created_at' => $item->created_at->format('d-m-y h:i:a'),
             ];
             $salesData[] = $sale;
         }
@@ -129,7 +129,7 @@ class TransactionController extends Controller
                 'ratio' => $item->ratio,
                 'teacher' => $item->teacher,
                 'owner' => $item->owner,
-                'created_at' => $item->created_at->format('d-mm-y h:i:a'),
+                'created_at' => $item->created_at->format('d-m-y h:i:a'),
             ];
         }
 
@@ -160,7 +160,7 @@ class TransactionController extends Controller
                 'amount' => $item->amount,
                 'ratio' => $item->ratio,
                 'owner' => $item->owner,
-                'created_at' => $item->created_at->format('d-mm-y h:i:a'),
+                'created_at' => $item->created_at->format('d-m-y h:i:a'),
             ];
         }
 
@@ -208,7 +208,7 @@ class TransactionController extends Controller
                 'ratio' => $item->ratio,
                 'teacher' => $item->teacher,
                 'owner' => $item->owner,
-                'created_at' => $item->created_at->format('d-mm-y h:i:a'),
+                'created_at' => $item->created_at->format('d-m-y h:i:a'),
             ];
         }
 

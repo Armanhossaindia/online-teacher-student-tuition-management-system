@@ -24,7 +24,7 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item">Dashboards</li>
-                                <li class="breadcrumb-item active">Shop ladger sheet</li>
+                                <li class="breadcrumb-item active">Shop Ledger sheet</li>
                             </ol>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                                     <tr>
                                         <th>Product Name</th>
                                         <th>Invoice ID</th>
-                                        <th>student Name</th>
+                                        <th>User Name</th>
                                         <th>Amount</th>
                                         <th>Ratio</th>
 
@@ -81,7 +81,7 @@
 
                                         <td>{{ $transaction->ratio }} %</td>
 
-                                        <td>{{ $transaction->created_at->format('d-mm-y h:i:a')}}</td>
+                                        <td>{{ $transaction->created_at->format('d-m-y h:i:a')}}</td>
 
                                     </tr>
                                     @endforeach

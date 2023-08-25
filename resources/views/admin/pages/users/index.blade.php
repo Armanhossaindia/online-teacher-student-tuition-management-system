@@ -143,7 +143,9 @@
 
             </div>
             <div class="modal-footer">
+            @if($user->complete != 1)
                 <a href="{{ route('users.confirm',$user->id) }}" class="btn btn-success">Accept</a>
+                @endif
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

@@ -66,13 +66,13 @@
                                     <tr>
                                         <td>
                                             @if ($course->status == 1)
-                                            <a class="btn btn-danger waves-effect btn-circle waves-light"
-                                              href="{{ route('courses.inactive', $course->id) }}">
-                                                <i class="fas fa-minus-circle"></i> </a>
-                                            @else
                                             <a class="btn btn-success waves-effect btn-circle waves-light"
+                                              href="{{ route('courses.inactive', $course->id) }}">
+                                                <i class="fas fa-check"></i> </a>
+                                            @else
+                                            <a class="btn btn-danger waves-effect btn-circle waves-light"
                                               href="{{ route('courses.active', $course->id) }}">
-                                                <i class="fa fa-check"></i> </a>
+                                                <i class="fa fa-times"></i> </a>
                                             @endif
 
                                             <a class="btn btn-primary waves-effect btn-circle waves-light"

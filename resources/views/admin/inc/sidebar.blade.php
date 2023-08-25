@@ -61,7 +61,7 @@
     <li>
         <a href="javascript: void(0);" class="has-arrow waves-effect">
             <i class="bx bx-home-circle"></i>
-            <span key="t-Shop">Ladger sheets</span>
+            <span key="t-Shop">Ledger sheets</span>
         </a>
         <ul class="sub-menu" aria-expanded="false">
             <li><a href="{{ route('profit.course.index') }}" key="t-list">Courses</a></li>

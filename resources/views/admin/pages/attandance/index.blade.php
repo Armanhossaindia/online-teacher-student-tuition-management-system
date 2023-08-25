@@ -85,13 +85,13 @@
 
                                         <td>
                                             @if ($attandance->status == 1)
-                                            <a class="btn btn-info waves-effect btn-circle waves-light"
-                                              href="{{ route('attendances.inactive', $attandance->id) }}">
-                                                <i class="fas fa-minus-circle"></i> </a>
-                                            @else
                                             <a class="btn btn-success waves-effect btn-circle waves-light"
+                                              href="{{ route('attendances.inactive', $attandance->id) }}">
+                                                <i class="fas fa-check"></i> </a>
+                                            @else
+                                            <a class="btn btn-danger waves-effect btn-circle waves-light"
                                               href="{{ route('attendances.active', $attandance->id) }}">
-                                                <i class="fa fa-check"></i> </a>
+                                                <i class="fa fa-times"></i> </a>
                                             @endif
 
                                             <form hidden action="{{ route('attendances.destroy', $attandance->id) }}"

@@ -220,11 +220,11 @@ class PublicController extends Controller
                 'coursetitle' => $item->order->course->title,
                 'course_amount' => $item->amount,
                 'ratio' => $item->ratio,
-                'profit_amount' => $item->owner,
+                'profit_amount' => $item->teacher,
                 'student_name' => $item->student->name,
-                'created_at' => $item->created_at->format('d-mm-y'),
+                'created_at' => $item->created_at->format('d-m-y'),
             ];
-            $totalProfitAmount += $item->owner;
+            $totalProfitAmount += $item->teacher;
             $saleData[] = $sale;
         }
 
@@ -247,7 +247,7 @@ class PublicController extends Controller
                 'transaction_id' => $transaction->transaction_id,
                 'seller' => $transaction->order->type == 1 ? $transaction->creator->name : 'In House',
                 'amount' => $transaction->amount,
-                'created_at' => $transaction->created_at->format('d-mm-y h:i:a'),
+                'created_at' => $transaction->created_at->format('d-m-y h:i:a'),
             ];
 
             $purchasedData[] = $sale;

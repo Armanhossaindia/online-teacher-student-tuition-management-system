@@ -97,7 +97,13 @@
                 <div class="text-16 lh-1 fw-500 text-dark-1 mb-30">General</div>
                 <div>
                     @if(Auth::user())
-
+                    <div class="sidebar__item ">
+                        <a href="{{ route('user.dashboard') }}"
+                          class="d-flex items-center text-17 lh-1 fw-500 -dark-text-white">
+                            <i class="text-20 icon-discovery mr-15"></i>
+                            Dashboard
+                        </a>
+                    </div>
                     @if(Auth::user()->role == 2)
                     @else
                     <div class="sidebar__item ">

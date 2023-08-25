@@ -24,7 +24,7 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item">Dashboards</li>
-                                <li class="breadcrumb-item active">Course ladger sheet</li>
+                                <li class="breadcrumb-item active">Course Ledger sheet</li>
                             </ol>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                                         <td>{{ $transaction->ratio }} %</td>
                                         <td>{{ $transaction->teacher }} $</td>
                                         <td>{{ $transaction->owner }} $</td>
-                                        <td>{{ $transaction->created_at->format('d-mm-y h:i:a') }}</td>
+                                        <td>{{ $transaction->created_at->format('d-m-y h:i:a') }}</td>
 
                                     </tr>
                                     @endforeach

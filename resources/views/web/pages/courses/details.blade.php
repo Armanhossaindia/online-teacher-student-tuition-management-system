@@ -88,10 +88,21 @@
                                     <div class="d-flex justify-between items-center mb-30">
                                         <div class="text-24 lh-1 text-dark-1 fw-500">${{ $course->price }}</div>
                                     </div>
+                                    @php
+                                    if(Auth::user()){
+                                    $ifpurchased = App\Models\Order::query()->where('type', 1)->where('item_id',
+                                    $course->id)->where('user_id', Auth::user()->id)->get();
+                                    }else {
+                                    $ifpurchased = false;
+                                    }
+                                    @endphp
+                                    @if(!$ifpurchased)
                                     <a href="{{route('checkout.store', ['item' => $course->id, 'type' => '1'])}}"
                                       class="button -md -outline-dark-1 text-dark-1 w-1/1 mt-10">Buy Now</a>
-
-
+                                      @else
+                                    <button class="button -md -outline-dark-1 text-dark-1 w-1/1 mt-10">Allready
+                                        Purchased This Course</button>
+                                    @endif
 
                                 </div>
                             </div>
