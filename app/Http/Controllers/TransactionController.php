@@ -12,9 +12,11 @@ class TransactionController extends Controller
 {
 
     public function view($transactionId)
+
     {
         // Fetch the sale data based on the $transactionId (you may use the existing logic or adjust it as needed)
-        $transaction = Transaction::findOrFail($transactionId);
+        $transaction = Transaction::where('order_id',$transactionId)->first();
+       // dd($transaction);
 
         $sale = [
             'order_no' => $transaction->order_id,
@@ -26,7 +28,7 @@ class TransactionController extends Controller
             'created_at' => $transaction->created_at->format('d-m-y'),
         ];
         $salesData[] = $sale;
-
+        //dd($sale);
         // Create a view with the sale data (you can create a blade view or use a raw HTML string)
         $view = view('admin.pages.transaction.sale_invoice', compact('sale'));
 
@@ -45,7 +47,7 @@ class TransactionController extends Controller
     public function invoice($transactionId)
     {
         // Fetch the sale data based on the $transactionId (you may use the existing logic or adjust it as needed)
-        $transaction = Transaction::findOrFail($transactionId);
+        $transaction = Transaction::where('order_id',$transactionId)->first();
 
         $sale = [
             'order_no' => $transaction->order_id,

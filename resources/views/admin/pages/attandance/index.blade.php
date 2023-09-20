@@ -40,9 +40,10 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <a class="btn btn-soft-primary waves-effect waves-light mb-2"
+                            <!-- <a class="btn btn-soft-primary waves-effect waves-light mb-2"
                               href="{{ route('attendances.create') }}">
-                                + Create New Attandance </a>
+                                + Create New Attandance </a> -->
+                                <h4 class="mb-sm-0 font-size-18">Student Attendance</h4>
 
                             <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
                                 <thead>
@@ -54,8 +55,9 @@
                                         <th>date</th>
                                     </tr>
                                 </thead>
+                           
                                 <tbody>
-                                    @foreach ($attendances as $attandance)
+                                    @foreach ($attendances->where('user_type',1) as $attandance)
                                     <tr>
                                         <td>
                                             @if ($attandance->status == 1)
@@ -112,6 +114,84 @@
 
 
                 </div>
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!-- <a class="btn btn-soft-primary waves-effect waves-light mb-2"
+                              href="{{ route('attendances.create') }}">
+                                + Create New Attandance </a> -->
+                                <h4 class="mb-sm-0 font-size-18">Teacher Attendance</h4>
+                            <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>status</th>
+                                        <th>Course</th>
+                                        <th>Teacher</th>
+                                        <th>Timeline</th>
+                                        <th>date</th>
+                                    </tr>
+                                </thead>
+                           
+                                <tbody>
+                                    @foreach ($attendances->where('user_type',2)  as $attandance)
+                                    <tr>
+                                        <td>
+                                            @if ($attandance->status == 1)
+                                            <span
+                                              class="badge rounded-pill badge-soft-success font-size-11">Active</span>
+                                            @else
+                                            <span
+                                              class="badge rounded-pill badge-soft-danger font-size-11">Inactive</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $attandance->course->title }}
+                                        </td>
+                                        <td>
+                                            @if ($attandance->user_type == 1)
+                                            {{ $attandance->student->name }}
+                                            @else
+                                            {{ $attandance->teacher->name }}
+                                            @endif
+
+
+                                        </td>
+
+                                        <td>{{ $attandance->durationName->timeline }}</td>
+                                        <td>{{ $attandance->date }}</td>
+
+
+                                        <td>
+                                            @if ($attandance->status == 1)
+                                            <a class="btn btn-success waves-effect btn-circle waves-light"
+                                              href="{{ route('attendances.inactive', $attandance->id) }}">
+                                                <i class="fas fa-check"></i> </a>
+                                            @else
+                                            <a class="btn btn-danger waves-effect btn-circle waves-light"
+                                              href="{{ route('attendances.active', $attandance->id) }}">
+                                                <i class="fa fa-times"></i> </a>
+                                            @endif
+
+                                            <form hidden action="{{ route('attendances.destroy', $attandance->id) }}"
+                                              id="form{{ $attandance->id }}" method="get">
+                                                @csrf
+                                            </form>
+                                            <button class="btn btn-danger waves-effect btn-circle waves-light"
+                                              onclick="deleteItem({{ $attandance->id }});" type="button">
+                                                <i class="fa fa-trash"></i> </button>
+                                        </td>
+
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+                
             </div>
             <!-- end row -->
         </div>

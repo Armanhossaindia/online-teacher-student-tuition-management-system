@@ -96,12 +96,13 @@
                                     $ifpurchased = false;
                                     }
                                     @endphp
-                                    @if(!$ifpurchased)
-                                    <a href="{{route('checkout.store', ['item' => $course->id, 'type' => '1'])}}"
-                                      class="button -md -outline-dark-1 text-dark-1 w-1/1 mt-10">Buy Now</a>
-                                      @else
+                                    @if($ifpurchased->count() > 0)
                                     <button class="button -md -outline-dark-1 text-dark-1 w-1/1 mt-10">Allready
                                         Purchased This Course</button>
+                                      @else
+                                      <a href="{{route('checkout.store', ['item' => $course->id, 'type' => '1'])}}"
+                                      class="button -md -outline-dark-1 text-dark-1 w-1/1 mt-10">Buy Now</a>
+                                    
                                     @endif
 
                                 </div>
